@@ -1,0 +1,3 @@
+# Makefiles always use tabs for indentation
+[Makefile]
+indent_style = tab

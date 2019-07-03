@@ -1,0 +1,2 @@
+telegraf_influxdb_urls:
+  - http://localhost:8086
