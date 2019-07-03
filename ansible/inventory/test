@@ -1,0 +1,7 @@
+[monitoring]
+bahamas.ai      ansible_user=bitdust
+
+[nodes_broken_apt]
+p2p-id.ru       ansible_user=veselin
+p2p-alice.ai    ansible_user=bitdust
+bitdust.ai      ansible_user=veselin
