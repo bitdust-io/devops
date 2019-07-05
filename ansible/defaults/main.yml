@@ -69,12 +69,22 @@ telegraf_plugins_base:
     options:
       interfaces:
         - "eth0"
+        - "ens3"
+        - "venet0"
   - name: httpjson
     options:
-      name: "bitdust_stats"
+      name_suffix: "_bitdust_stats"
       servers:
         - "http://localhost:8180/space/local/v1"
       method: "GET"
+
+  - name: httpjson
+    options:
+      name_suffix: "_bitdust_space_donated"
+      servers:
+        - "http://localhost:8180/space/donated/v1"
+      method: "GET"
+
 
 telegraf_plugins: "{{ telegraf_plugins_base }} + {{ telegraf_plugins_extra | default([]) }}"
 
