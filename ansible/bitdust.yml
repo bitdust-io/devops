@@ -1,10 +1,4 @@
 - hosts: all
   become: true
-  vars_files:
-    - defaults/main.yml
-    - vars/main.yml
-    - "vars/{{ application_name }}.yml"
   tasks:
-    - include: tasks/main.yml
-  handlers:
-    - include: handlers/main.yml
+    - include: roles/bitdust/tasks/setup.yml

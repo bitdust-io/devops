@@ -1,0 +1,17 @@
+- git:
+    repo: https://github.com/bitdust-io/public.git
+    dest: /home/bitdust/public
+
+- name: Setup bitdust
+  shell: python bitdust.py install
+  args:
+      chdir: /home/bitdust/public
+
+- name: Create a symbolic link for bitdust
+  file:
+    src: /root/.bitdust/bitdust
+    dest: /usr/local/bin/bitdust
+    state: link
+
+- name: Start bitdust
+  shell: bitdust detach
