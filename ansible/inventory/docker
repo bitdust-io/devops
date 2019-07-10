@@ -2,7 +2,8 @@
 image_monitoring    ansible_connection=docker
 
 [nodes]
-playground_node_1_1      ansible_connection=docker      ansible_become=false
-playground_node_2_1      ansible_connection=docker      ansible_become=false
-playground_node_3_1      ansible_connection=docker      ansible_become=false
-playground_node_4_1      ansible_connection=docker      ansible_become=false
+#playground_node_1_1      ansible_connection=docker      ansible_become=false
+#playground_node_2_1      ansible_connection=docker      ansible_become=false
+#playground_node_3_1      ansible_connection=docker      ansible_become=false
+#playground_node_4_1      ansible_connection=docker      ansible_become=false
+playground_node_rasbian_1      ansible_connection=docker      ansible_become=false

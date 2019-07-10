@@ -1,9 +1,32 @@
-- git:
+---
+- name: Install any necessary dependencies (git)
+  apt:
+    name:
+      - git
+      - python-virtualenv
+      - python3-pip
+      - python3-virtualenv
+      - python3-dev
+      - gcc
+      - libssl-dev
+      - libffi-dev
+      - build-essential
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+  register: apt_result
+  until: apt_result is success
+  retries: 2
+  delay: 5
+
+- name: Install bitdust from public
+  git:
     repo: https://github.com/bitdust-io/public.git
     dest: /home/bitdust/public
+#    version: 121c07f1267b78b0924a6f97bc424dc15f640a71
 
 - name: Setup bitdust
-  shell: python bitdust.py install
+  shell: python3 bitdust.py install
   args:
       chdir: /home/bitdust/public
 
