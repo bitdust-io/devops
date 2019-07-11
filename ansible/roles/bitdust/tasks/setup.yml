@@ -1,9 +1,9 @@
 ---
-- name: Install any necessary dependencies (git)
+- name: Install any necessary dependencies (git, python related packages)
   apt:
     name:
       - git
-      - python-virtualenv
+      - python-virtualenv # `bitdust install` doesn't work without `virtualenv` command
       - python3-pip
       - python3-virtualenv
       - python3-dev
@@ -25,14 +25,35 @@
     dest: /home/bitdust/public
 #    version: 121c07f1267b78b0924a6f97bc424dc15f640a71
 
+- name: Check that bitdust_installed installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.bitdust/installed"
+  register: bitdust_installed
+
 - name: Setup bitdust
   shell: python3 bitdust.py install
   args:
       chdir: /home/bitdust/public
+  when: bitdust_installed.stat.exists == False
+
+- name: Left artifact of installation
+  copy:
+    content: "1"
+    dest: "{{ ansible_env.HOME }}/.bitdust/installed"
+
+- name: Deploy configuration file with network
+  copy:
+    content: "{{ lookup('template', 'roles/bitdust/templates/network.j2.json') }}"
+    dest: "/home/bitdust/public/networks.json"
+
+- name: Change network to test one
+  copy:
+    content: "testing"
+    dest: "{{ ansible_env.HOME }}/.bitdust/metadata/networkname"
 
 - name: Create a symbolic link for bitdust
   file:
-    src: /root/.bitdust/bitdust
+    src: "{{ ansible_env.HOME }}/.bitdust/bitdust"
     dest: /usr/local/bin/bitdust
     state: link
 

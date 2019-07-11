@@ -1,4 +1,6 @@
 - hosts: all
   become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
   tasks:
     - include: roles/bitdust/tasks/setup.yml
