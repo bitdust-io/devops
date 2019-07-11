@@ -6,30 +6,60 @@ Collection of tools, scripts and helpers for maintaining BitDust infrastracture
 Usage
 =====
 
+Prepare environment
+-------------------
+
 ```shell
     $ make venv
-    $ cd ansible
 ```
 
 
-Install/update telegraf configuration on monitoring machine
------------------------------------------------------------
-```shell
-ansible-playbook telegraf.yml -i inventory/test -K --limit monitoring -e "application_name=monitoring"
-```
+Install/update telegraf configuration
+-------------------------------------
 
-
-Install/update telegraf configuration on nodes with broken dependencies
------------------------------------------------------------------------
+1. Monitoring machine has different telegraf location (localhost one)
 
 ```shell
-ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit nodes_broken_apt -e "application_name=broken_apt"
+    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit monitoring -e "application_name=monitoring"
 ```
 
+2. Machine with broken apt dependencies
+
+```shell
+    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit nodes_broken_apt -e "application_name=broken_apt"
+```
+
+3. Fully functional machines
+
+```shell
+    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test --limit nodes -e "application_name=main"
+```
 
 Playground
-----------
+==========
+
+Run
+---
 
 ```shell
-ansible-playbook ansible/telegraf.yml -i ansible/inventory/docker --limit nodes -e "application_name=main"
+    $ cd playground
+    $ docker-compose up
+    ...
+    $ docker-compose down -v
+    
+```
+
+Create testing network
+----------------------
+
+```shell
+    $ ansible-playbook ansible/bitdust.yml -i ansible/inventory/docker --limit nodes
+```
+
+
+Install telegraf
+----------------
+
+```shell
+    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/docker --limit nodes -e "application_name=main"
 ```
