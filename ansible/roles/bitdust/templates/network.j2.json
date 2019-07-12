@@ -12,34 +12,19 @@
         },
         "dht-seeds": [
             {
-                "host": "dht_seed_0",
+                "host": "playground_dht_seed_1_1",
                 "udp_port": 14441,
                 "maintainer": "Docker"
             },
             {
-                "host": "dht_seed_1",
-                "udp_port": 14441,
-                "maintainer": "Docker"
-            },
-            {
-                "host": "dht_seed_2",
-                "udp_port": 14441,
-                "maintainer": "Docker"
-            },
-            {
-                "host": "dht_seed_3",
-                "udp_port": 14441,
-                "maintainer": "Docker"
-            },
-            {
-                "host": "dht_seed_4",
+                "host": "playground_dht_seed_2_1",
                 "udp_port": 14441,
                 "maintainer": "Docker"
             }
         ],
         "identity-servers": [
             {
-                "host": "is",
+                "host": "identity-1",
                 "http_port": 8084,
                 "tcp_port": 6661,
                 "maintainer": "Docker"

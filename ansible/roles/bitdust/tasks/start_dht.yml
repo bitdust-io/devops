@@ -1,0 +1,19 @@
+---
+- name: Start DHT seed
+  shell: |
+    bitdust set personal/private-key-size 1024
+    bitdust set services/customer/enabled false
+    bitdust set services/supplier/enabled false
+    bitdust set services/proxy-transport/enabled false
+    bitdust set services/proxy-server/enabled false
+    bitdust set services/private-messages/enabled false
+    bitdust set services/nodes-lookup/enabled false
+    bitdust set services/identity-propagate/enabled false
+
+    bitdust set services/entangled-dht/udp-port "14441"
+    bitdust set services/entangled-dht/known-nodes "playground_dht_seed_1_1"
+
+    bitdust set services/ip-port-responder/enabled true
+
+- name: Restart bitdust
+  shell: bitdust restart

@@ -1,0 +1,23 @@
+---
+- name: Start identity server
+  shell: |
+    bitdust set personal/private-key-size 1024
+    bitdust set services/customer/enabled false
+    bitdust set services/supplier/enabled false
+    bitdust set services/proxy-transport/enabled false
+
+    bitdust set services/identity-propagate/min-servers 1
+    bitdust set services/identity-propagate/max-servers 1
+
+    bitdust set services/entangled-dht/udp-port "14441"
+
+    bitdust set services/proxy-server/enabled true
+
+- name: Stop bitdust
+  shell: bitdust stop
+
+#- name: Create identity
+#  shell: bitdust identity create proxy_1 1024
+#
+#- name: Start bitdust
+#  shell: bitdust start

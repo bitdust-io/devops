@@ -19,13 +19,14 @@
   retries: 2
   delay: 5
 
-- name: Install bitdust from public
+- name: Install bitdust from devel
   git:
-    repo: https://github.com/bitdust-io/public.git
+    repo: https://github.com/bitdust-io/devel.git
     dest: /home/bitdust/public
+    force: yes
 #    version: 121c07f1267b78b0924a6f97bc424dc15f640a71
 
-- name: Check that bitdust_installed installed
+- name: Check that bitdust installed
   stat:
     path: "{{ ansible_env.HOME }}/.bitdust/installed"
   register: bitdust_installed
@@ -45,6 +46,9 @@
   copy:
     content: "{{ lookup('template', 'roles/bitdust/templates/network.j2.json') }}"
     dest: "/home/bitdust/public/networks.json"
+
+- name: Ensure {{ ansible_env.HOME }}/.bitdust/metadata dir exists
+  file: path={{ ansible_env.HOME }}/.bitdust/metadata state=directory
 
 - name: Change network to test one
   copy:
