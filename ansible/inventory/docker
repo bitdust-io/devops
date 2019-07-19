@@ -1,12 +1,14 @@
 [monitoring]
 image_monitoring    ansible_connection=docker
 
-[nodes]
-playground_identity_1_1      ansible_connection=docker      ansible_become=false
-playground_dht_seed_1_1      ansible_connection=docker      ansible_become=false
-playground_dht_seed_2_1      ansible_connection=docker      ansible_become=false
-playground_stun_1_1      ansible_connection=docker      ansible_become=false
-playground_proxy_1_1      ansible_connection=docker      ansible_become=false
+[nodes:children]
+identity
+dht_genesis
+dht_seeds
+stuns
+proxy
+supplier
+customer
 
 [identity]
 playground_identity_1_1      ansible_connection=docker      ansible_become=false
@@ -21,4 +23,12 @@ playground_dht_seed_2_1      ansible_connection=docker      ansible_become=false
 playground_stun_1_1      ansible_connection=docker      ansible_become=false
 
 [proxy]
-playground_proxy_1_1      ansible_connection=docker      ansible_become=false
+playground_proxy_1_1      ansible_connection=docker      ansible_become=false   proxy_name=proxy_1
+
+[supplier]
+playground_supplier_1_1      ansible_connection=docker      ansible_become=false    supplier_name=supplier_1
+playground_supplier_2_1      ansible_connection=docker      ansible_become=false    supplier_name=supplier_2
+
+[customer]
+playground_customer_1_1      ansible_connection=docker      ansible_become=false    customer_name=customer_1
+playground_customer_2_1      ansible_connection=docker      ansible_become=false    customer_name=customer_2

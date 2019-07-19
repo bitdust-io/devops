@@ -39,3 +39,17 @@
     - roles/bitdust/vars/main.yml
   tasks:
     - include: roles/bitdust/tasks/start_proxy.yml
+
+- hosts: supplier
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_supplier.yml
+
+- hosts: customer
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_customer.yml
