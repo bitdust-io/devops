@@ -1,5 +1,5 @@
 ---
-- name: Start identity server
+- name: Configure proxy
   shell: |
     bitdust set personal/private-key-size 1024
     bitdust set services/customer/enabled false
@@ -13,11 +13,24 @@
 
     bitdust set services/proxy-server/enabled true
 
+- name: Check that identity created
+  stat:
+    path: "{{ ansible_env.HOME }}/.bitdust/identity_created"
+  register: identity_created
+
 - name: Stop bitdust
   shell: bitdust stop
+  when: identity_created.stat.exists == False
 
 - name: Create identity
   shell: bitdust identity create {{ proxy_name }} 1024
+  when: identity_created.stat.exists == False
+
+- name: Left artifact of identity
+  copy:
+    content: "1"
+    dest: "{{ ansible_env.HOME }}/.bitdust/identity_created"
 
 - name: Start bitdust
   shell: bitdust detach
+  when: identity_created.stat.exists == False

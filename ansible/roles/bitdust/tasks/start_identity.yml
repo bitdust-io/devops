@@ -1,5 +1,5 @@
 ---
-- name: Start identity server
+- name: Configure identity server
   shell: |
     bitdust set personal/private-key-size 1024
     bitdust set services/customer/enabled false
