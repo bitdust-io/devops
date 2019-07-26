@@ -42,13 +42,13 @@
     content: "1"
     dest: "{{ ansible_env.HOME }}/.bitdust/installed"
 
+- name: Ensure {{ ansible_env.HOME }}/.bitdust/metadata dir exists
+  file: path={{ ansible_env.HOME }}/.bitdust/metadata state=directory
+
 - name: Deploy configuration file with network
   copy:
     content: "{{ lookup('template', 'roles/bitdust/templates/network.j2.json') }}"
-    dest: "/home/bitdust/public/networks.json"
-
-- name: Ensure {{ ansible_env.HOME }}/.bitdust/metadata dir exists
-  file: path={{ ansible_env.HOME }}/.bitdust/metadata state=directory
+    dest: "{{ ansible_env.HOME }}/.bitdust/metadata/networks.json"
 
 - name: Change network to test one
   copy:
