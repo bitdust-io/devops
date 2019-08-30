@@ -10,4 +10,5 @@ root-node.ai             ansible_user=bitdust   application_name=main
 
 [supplies]
 bitpie1.net.example.com
-bitpie1.net.nbrz.ru
+bitpie2.net.nbrz.ru
+bitpie.net.nbrz.ru
