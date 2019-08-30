@@ -20,13 +20,13 @@ Install/update telegraf configuration
 1. Monitoring machine has different telegraf location (localhost one)
 
 ```shell
-    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit monitoring -e "application_name=monitoring"
+    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit monitoring -e "application_name=monitoring" --ask-pass
 ```
 
 2. Machine with broken apt dependencies
 
 ```shell
-    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit nodes_broken_apt -e "application_name=broken_apt"
+    $ ansible-playbook ansible/telegraf.yml -i ansible/inventory/test -K --limit nodes_broken_apt -e "application_name=broken_apt"  --ask-pass
 ```
 
 3. Fully functional machines
