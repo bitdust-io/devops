@@ -1,7 +1,14 @@
 [monitoring]
-bahamas.ai      ansible_user=bitdust
+bahamas.ai               ansible_user=bitdust
 
-[nodes_broken_apt]
-p2p-id.ru       ansible_user=veselin
-p2p-alice.ai    ansible_user=bitdust
-bitdust.ai      ansible_user=veselin
+[id_servers]
+p2p-id.ru                ansible_user=veselin   application_name=broken_apt
+p2p-alice.ai             ansible_user=bitdust   application_name=broken_apt
+bitdust.ai               ansible_user=veselin   application_name=broken_apt
+seed.bitdust.io          ansible_user=veselin   application_name=main
+root-node.ai             ansible_user=bitdust   application_name=main
+
+[supplies]
+bitpie1.net.example.com
+bitpie2.net.nbrz.ru
+bitpie.net.nbrz.ru
