@@ -1,0 +1,55 @@
+- hosts: all
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/setup.yml
+
+- hosts: dht_genesis
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_dht_genesis.yml
+
+- hosts: dht_seeds
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_dht.yml
+
+- hosts: identity
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_identity.yml
+
+- hosts: stuns
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_stun.yml
+
+- hosts: proxy
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_proxy.yml
+
+- hosts: supplier
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_supplier.yml
+
+- hosts: customer
+  become: true
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/start_customer.yml

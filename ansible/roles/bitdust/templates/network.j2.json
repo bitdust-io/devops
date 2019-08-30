@@ -1,0 +1,34 @@
+{
+    "testing": {
+        "description": "BitDust Docker network for regression tests",
+        "repository": null,
+        "dht-constants": {
+        	"bucket_size": 4,
+                "parallel_calls": 4,
+        	"rpc_timeout": 10,
+        	"refresh_timeout": 600,
+        	"max_age": 86400,
+        	"default_age": 43200
+        },
+        "dht-seeds": [
+            {
+                "host": "playground_dht_seed_1_1",
+                "udp_port": 14441,
+                "maintainer": "Docker"
+            },
+            {
+                "host": "playground_dht_seed_2_1",
+                "udp_port": 14441,
+                "maintainer": "Docker"
+            }
+        ],
+        "identity-servers": [
+            {
+                "host": "identity-1",
+                "http_port": 8084,
+                "tcp_port": 6661,
+                "maintainer": "Docker"
+            }
+        ]
+    }
+}

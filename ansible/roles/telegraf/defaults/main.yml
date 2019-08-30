@@ -58,6 +58,11 @@ telegraf_plugins_base:
     options:
       mountpoints:
         - "/"
+  - name: filecount
+    options:
+      directories:
+        - "/home/*/.bitdust/logs"
+      name: "exception_*"
   - name: diskio
     options:
       skip_serial_number: "true"
@@ -73,14 +78,14 @@ telegraf_plugins_base:
         - "venet0"
   - name: httpjson
     options:
-      name_suffix: "_bitdust_stats"
+      name_suffix: "_bitdust_space_local_v1"
       servers:
         - "http://localhost:8180/space/local/v1"
       method: "GET"
 
   - name: httpjson
     options:
-      name_suffix: "_bitdust_space_donated"
+      name_suffix: "_bitdust_space_donated_v1"
       servers:
         - "http://localhost:8180/space/donated/v1"
       method: "GET"

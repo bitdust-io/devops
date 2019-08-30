@@ -1,0 +1,79 @@
+
+version: "3"
+services:
+  identity_1:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+        aliases:
+          - identity-1
+
+  dht_seed_1:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  dht_seed_2:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  stun_1:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  proxy_1:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  supplier_1:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  supplier_2:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  customer_1:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  customer_2:
+    image: python:3.6
+    command: sleep infinity
+
+    networks:
+      new:
+
+  node_rasbian:
+    build:
+      dockerfile: raspbian/Dockerfile
+      context: .
+    command: sleep infinity
+
+    networks:
+      new:
+
+networks:
+  new:
