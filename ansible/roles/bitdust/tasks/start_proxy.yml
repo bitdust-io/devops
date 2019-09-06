@@ -19,7 +19,7 @@
   register: identity_created
 
 - name: Stop bitdust
-  shell: bitdust stop
+  shell: ps aux | grep bitdust.py | grep -v grep | awk '{ print $2}' | xargs kill
   when: identity_created.stat.exists == False
 
 - name: Create identity

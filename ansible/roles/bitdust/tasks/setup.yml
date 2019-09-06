@@ -1,5 +1,6 @@
 ---
 - name: Install any necessary dependencies (git, python related packages)
+  become: true
   apt:
     name:
       - git
@@ -22,7 +23,7 @@
 - name: Install bitdust from devel
   git:
     repo: https://github.com/bitdust-io/devel.git
-    dest: /home/bitdust/public
+    dest: "{{ ansible_env.HOME }}/devel"
     force: yes
 #    version: 121c07f1267b78b0924a6f97bc424dc15f640a71
 
@@ -34,7 +35,7 @@
 - name: Setup bitdust
   shell: python3 bitdust.py install
   args:
-      chdir: /home/bitdust/public
+      chdir: "{{ ansible_env.HOME }}/devel"
   when: bitdust_installed.stat.exists == False
 
 - name: Left artifact of installation
@@ -52,10 +53,11 @@
 
 - name: Change network to test one
   copy:
-    content: "testing"
+    content: "devnet"
     dest: "{{ ansible_env.HOME }}/.bitdust/metadata/networkname"
 
 - name: Create a symbolic link for bitdust
+  become: true
   file:
     src: "{{ ansible_env.HOME }}/.bitdust/bitdust"
     dest: /usr/local/bin/bitdust

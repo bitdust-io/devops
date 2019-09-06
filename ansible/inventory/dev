@@ -1,0 +1,30 @@
+[nodes:children]
+id_servers
+dht_genesis
+dht_seeds
+stuns
+proxy
+supplier
+customer
+
+
+[id_servers]
+bitdust-dev.ai                ansible_user=bitdust   application_name=devnet    identity_server_host=bitdust-dev.ai
+
+[dht_genesis]
+bitdust-dev.ai                ansible_user=bitdust   application_name=devnet
+
+[dht_seeds]
+blog.bitdust.io               ansible_user=veselin   application_name=devnet    entangled_dht_known_nodes=bitdust-dev.ai:14441
+
+[stuns]
+blog.bitdust.io               ansible_user=veselin   application_name=devnet
+
+[proxy]
+blog.bitdust.io               ansible_user=veselin   application_name=devnet    proxy_name=blogbitdustioproxy1
+
+[supplier]
+bitpie1.net.nbrz.ru           ansible_user=bitdust   application_name=devnet    supplier_name=supplier1             proxy_transport_preferred_routers=http://bitdust-dev.ai:8084/blogbitdustioproxy1.xml
+
+[customer]
+newdomain.ai                  ansible_user=bitdust   application_name=devnet    customer_name=customer1                  proxy_transport_preferred_routers=http://bitdust-dev.ai:8084/blogbitdustioproxy1.xml
