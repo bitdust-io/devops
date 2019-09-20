@@ -11,7 +11,7 @@
     bitdust set services/identity-propagate/enabled false
 
     bitdust set services/entangled-dht/udp-port "14441"
-    bitdust set services/entangled-dht/known-nodes "playground_dht_seed_1_1"
+    bitdust set services/entangled-dht/known-nodes "{{ entangled_dht_known_nodes }}"
 
     bitdust set services/ip-port-responder/enabled true
 

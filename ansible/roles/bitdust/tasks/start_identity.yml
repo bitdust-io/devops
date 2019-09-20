@@ -13,7 +13,7 @@
     bitdust set services/entangled-dht/enabled false
     bitdust set services/entangled-dht/udp-port "14441"
 
-    bitdust set services/identity-server/host "identity-1"
+    bitdust set services/identity-server/host "{{ identity_server_host }}"
     bitdust set services/identity-server/enabled true
 
 - name: Restart bitdust

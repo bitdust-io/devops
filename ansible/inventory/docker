@@ -11,13 +11,13 @@ supplier
 customer
 
 [identity]
-playground_identity_1_1      ansible_connection=docker      ansible_become=false
+playground_identity_1_1      ansible_connection=docker      ansible_become=false        identity_server_host=identity-1
 
 [dht_genesis]
 playground_dht_seed_1_1      ansible_connection=docker      ansible_become=false
 
 [dht_seeds]
-playground_dht_seed_2_1      ansible_connection=docker      ansible_become=false
+playground_dht_seed_2_1      ansible_connection=docker      ansible_become=false        entangled_dht_known_nodes=playground_dht_seed_1_1
 
 [stuns]
 playground_stun_1_1      ansible_connection=docker      ansible_become=false
@@ -30,5 +30,5 @@ playground_supplier_1_1      ansible_connection=docker      ansible_become=false
 playground_supplier_2_1      ansible_connection=docker      ansible_become=false    supplier_name=supplier_2
 
 [customer]
-playground_customer_1_1      ansible_connection=docker      ansible_become=false    customer_name=customer_1
-playground_customer_2_1      ansible_connection=docker      ansible_become=false    customer_name=customer_2
+playground_customer_1_1      ansible_connection=docker      ansible_become=false    customer_name=customer_1        proxy_transport_preferred_routers=http://identity-1:8084/proxy_1.xml
+playground_customer_2_1      ansible_connection=docker      ansible_become=false    customer_name=customer_2        proxy_transport_preferred_routers=http://identity-1:8084/proxy_1.xml

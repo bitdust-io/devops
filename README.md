@@ -148,6 +148,13 @@ Prepare environment
     $ ansible-playbook telegraf.yml -i inventory/test -K --limit monitoring -e "application_name=monitoring"
 ```
 
+#### Development network
+```shell
+    $ make venv
+    $ cd ansible
+    $ ansible-playbook telegraf.yml -i inventory/dev -K --limit nodes --ask-pass
+```
+
 
 
 #### Install/update telegraf configuration on Identity servers
