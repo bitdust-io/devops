@@ -74,26 +74,29 @@ telegraf_plugins_base:
     options:
       interfaces:
         - "eth0"
-        - "ens3"
+        - "ens*"
         - "venet0"
-  - name: httpjson
-    options:
-      name_suffix: "_bitdust_space_local_v1"
-      servers:
-        - "http://localhost:8180/space/local/v1"
-      method: "GET"
-  - name: httpjson
-    options:
-      name_suffix: "_bitdust_space_donated_v1"
-      servers:
-        - "http://localhost:8180/space/donated/v1"
-      method: "GET"
-  - name: httpjson
+  - name: http_response
     options:
       name_suffix: "_bitdust_process_health_v1"
-      servers:
+      urls:
         - "http://localhost:8180/process/health/v1"
       method: "GET"
+  - name: http
+    options:
+      name_suffix: "_bitdust_space_local_v1"
+      urls:
+        - "http://localhost:8180/space/local/v1"
+      method: "GET"
+      data_format: "json"
+
+  - name: http
+    options:
+      name_suffix: "_bitdust_space_donated_v1"
+      urls:
+        - "http://localhost:8180/space/donated/v1"
+      method: "GET"
+      data_format: "json"
 
 
 telegraf_plugins: "{{ telegraf_plugins_base }} + {{ telegraf_plugins_extra | default([]) }}"
