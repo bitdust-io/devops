@@ -1,14 +1,18 @@
+[nodes:children]
+id_servers
+suppliers
+monitoring
+
 [monitoring]
-bahamas.ai               ansible_user=bitdust
+bahamas.ai                  ansible_user=bitdust   application_name=monitoring
 
 [id_servers]
-p2p-id.ru                ansible_user=veselin   application_name=broken_apt
-p2p-alice.ai             ansible_user=bitdust   application_name=broken_apt
-bitdust.ai               ansible_user=veselin   application_name=broken_apt
-seed.bitdust.io          ansible_user=veselin   application_name=main
-root-node.ai             ansible_user=bitdust   application_name=main
+p2p-id.ru                   ansible_user=veselin   application_name=broken_apt
+p2p-alice.ai                ansible_user=bitdust   application_name=broken_apt
+bitdust.ai                  ansible_user=veselin   application_name=broken_apt
+seed.bitdust.io             ansible_user=veselin   application_name=broken_apt
+root-node.ai                ansible_user=bitdust   application_name=main
 
-[supplies]
-bitpie1.net.example.com
-bitpie2.net.nbrz.ru
-bitpie.net.nbrz.ru
+[suppliers]
+bitpie1.net.example.com      ansible_user=bitdust   application_name=main
+bitpie2.net.nbrz.ru          ansible_user=bitdust   application_name=main
