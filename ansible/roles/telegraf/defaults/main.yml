@@ -82,12 +82,17 @@ telegraf_plugins_base:
       servers:
         - "http://localhost:8180/space/local/v1"
       method: "GET"
-
   - name: httpjson
     options:
       name_suffix: "_bitdust_space_donated_v1"
       servers:
         - "http://localhost:8180/space/donated/v1"
+      method: "GET"
+  - name: httpjson
+    options:
+      name_suffix: "_bitdust_process_health_v1"
+      servers:
+        - "http://localhost:8180/process/health/v1"
       method: "GET"
 
 
