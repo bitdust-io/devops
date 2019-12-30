@@ -24,6 +24,10 @@ echo "##### building history"
 head -25 HISTORY.TXT
 
 echo
-echo "##### now you need to use 'git add / git rm' in public BitDust repository to confirm changes"
-echo "##### finally edit and save bitdust.devel/CHANGELOG.txt file and run ./release_start from devops/ folder"
+echo "##### now you need to prepare changes in the 'public' BitDust repository:"
+echo "1. cd ../bitdust/"
+echo "2. use 'git add / git rm' to confirm changes"
+echo "3. modify ../bitdust.devel/CHANGELOG.txt file (copy & paste console output above)"
+echo "4. cd ../bitdust.devops/"
+echo "5. run ./cicd/release_start"
 echo
