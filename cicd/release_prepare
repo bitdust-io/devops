@@ -5,7 +5,11 @@ cd ../bitdust
 echo
 echo "##### promote changes from one repository to another"
 ./import ../bitdust.devel/
-find . -type f -name "*.py" -exec sed -i '' -e 's/_Debug = True/_Debug = False/g' {} +
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    find . -type f -name "*.py" -exec sed -i '' -e 's/_Debug = True/_Debug = False/g' {} +
+else
+    find . -type f -name "*.py" -exec sed -i -e 's/_Debug = True/_Debug = False/g' {} +
+fi
 git status
 
 cd ..
@@ -20,6 +24,10 @@ echo "##### building history"
 head -25 HISTORY.TXT
 
 echo
-echo "##### now you need to use 'git add / git rm' in public BitDust repository to confirm changes"
-echo "##### finally edit and save bitdust.devel/CHANGELOG.txt file and run ./release_start from devops/ folder"
+echo "##### now you need to prepare changes in the 'public' BitDust repository:"
+echo "1. cd ../bitdust/"
+echo "2. use 'git add / git rm' to confirm changes"
+echo "3. modify ../bitdust.devel/CHANGELOG.txt file (copy & paste console output above)"
+echo "4. cd ../bitdust.devops/"
+echo "5. run ./cicd/release_start"
 echo
