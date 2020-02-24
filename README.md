@@ -3,6 +3,10 @@
 Collection of tools, scripts and helpers for maintaining BitDust infrastracture and software development.
 Also here you will learn how to start your own private BitDust network from scratch.
 
+
+
+## Development flow
+
 BitDust project development flow is based on two independent GIT repositories:
 
 * [Development repository](https://github.com/bitdust-io/devel)
@@ -132,9 +136,9 @@ Do not forget to update your fork right away to stay in sync:
 
 
 
-#### Install/update telegraf configuration on monitoring machine
+## Provisioning BitDust
 
-BitDust developers maintain few machines to "seed" the Main network - you can find those hosts in [networks.json](https://github.com/bitdust-io/public/blob/master/networks.json).
+BitDust developers maintain few machines to "seed" the Main network - you can find those hosts in [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
 Those machines we monitor via Grafana dashboard - bellow you can read how it is provisioned
 
@@ -153,25 +157,25 @@ Then clone `bitdust.devops` repo and build your virtual environment:
 
 
 
-#### Prepare monitoring machine
+#### Install/update telegraf configuration on monitoring machine
 
     ansible-playbook telegraf.yml -i inventory/main -K --limit monitoring -e "application_name=monitoring"
 
 
 
-#### Install/update telegraf configuration
+#### Install/update telegraf configuration on 
 
     ansible-playbook telegraf.yml -i inventory/main -K -e "application_name=main"
 
 
 
-#### Install BitDust on all hosts
+#### Install BitDust on target hosts
 
     ansible-playbook bitdust_install.yml -i inventory/main -e "application_name=main"
 
 
 
-#### Restart BitDust on all hosts
+#### Restart BitDust on target hosts
 
     ansible-playbook bitdust_refresh.yml -i inventory/main -e "application_name=main"
 
