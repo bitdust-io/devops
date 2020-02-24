@@ -54,18 +54,11 @@ telegraf_plugins_base:
       totalcpu: "true"
       fielddrop:
         - "time_*"
-  - name: disk
-    options:
-      mountpoints:
-        - "/"
   - name: filecount
     options:
       directories:
         - "/home/*/.bitdust/logs"
       name: "exception_*"
-  - name: diskio
-    options:
-      skip_serial_number: "true"
   - name: procstat
     options:
       exe: "influxd"
@@ -89,7 +82,6 @@ telegraf_plugins_base:
         - "http://localhost:8180/space/local/v1"
       method: "GET"
       data_format: "json"
-
   - name: http
     options:
       name_suffix: "_bitdust_space_donated_v1"
@@ -97,7 +89,6 @@ telegraf_plugins_base:
         - "http://localhost:8180/space/donated/v1"
       method: "GET"
       data_format: "json"
-
 
 telegraf_plugins: "{{ telegraf_plugins_base }} + {{ telegraf_plugins_extra | default([]) }}"
 
