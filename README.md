@@ -136,45 +136,43 @@ Do not forget to update your fork right away to stay in sync:
 
 BitDust developers maintain few machines to "seed" the Main network - you can find those hosts in [networks.json](https://github.com/bitdust-io/public/blob/master/networks.json).
 
-Those machines we monitor via Grafana dashboard we built and here is how we provision it:
-
-
-Prepare environment
--------------------
-
-```shell
-    $ make venv
-    $ cd ansible
-    $ ansible-playbook telegraf.yml -i inventory/test -K --limit monitoring -e "application_name=monitoring"
-```
-
-#### Development network
-```shell
-    $ make venv
-    $ cd ansible
-    $ ansible-playbook telegraf.yml -i inventory/dev -K --limit nodes --ask-pass
-```
+Those machines we monitor via Grafana dashboard - bellow you can read how it is provisioned
 
 
 
-#### Install/update telegraf configuration on Identity servers
+#### Prepare your local environment
 
-This comman we use to update monitoring config on all Identity server machines:
+First you need to [install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) locally.
 
-```shell
-    $ make venv
-    $ cd ansible
-    $ ansible-playbook telegraf.yml -i inventory/test -K --limit id_servers
-```
+Then clone `bitdust.devops` repo and build your virtual environment:
+
+    git clone https://github.com/bitdust-io/devops.git bitdust.devops
+    cd bitdust.devops
+    make venv
+    cd ansible
 
 
 
-#### Install/update telegraf configuration on suppliers
+#### Prepare monitoring machine
 
-This comman we use to update monitoring config on all suppliers nodes we started to provide a storage:
+    ansible-playbook telegraf.yml -i inventory/main -K --limit monitoring -e "application_name=monitoring"
 
-```shell
-    $ make venv
-    $ cd ansible
-    $ ansible-playbook telegraf.yml -i inventory/test -K --limit suppliers
-```
+
+
+#### Install/update telegraf configuration
+
+    ansible-playbook telegraf.yml -i inventory/main -K -e "application_name=main"
+
+
+
+#### Install BitDust on all hosts
+
+    ansible-playbook bitdust_install.yml -i inventory/main -e "application_name=main"
+
+
+
+#### Restart BitDust on all hosts
+
+    ansible-playbook bitdust_refresh.yml -i inventory/main -e "application_name=main"
+
+

@@ -1,0 +1,7 @@
+---
+- name: Restart daemon
+  shell: |
+    bitdust stop
+    sleep 1
+    bitdust daemon
+    sleep 5

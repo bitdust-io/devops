@@ -1,0 +1,6 @@
+- hosts: all
+  serial: 2
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/refresh.yml

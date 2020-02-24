@@ -20,12 +20,11 @@
   retries: 2
   delay: 5
 
-- name: Install bitdust from devel
+- name: Install bitdust from public
   git:
-    repo: https://github.com/bitdust-io/devel.git
-    dest: "{{ ansible_env.HOME }}/devel"
+    repo: https://github.com/bitdust-io/public.git
+    dest: "{{ ansible_env.HOME }}/bitdust"
     force: yes
-#    version: 121c07f1267b78b0924a6f97bc424dc15f640a71
 
 - name: Check that bitdust installed
   stat:
@@ -35,7 +34,7 @@
 - name: Setup bitdust
   shell: python3 bitdust.py install
   args:
-      chdir: "{{ ansible_env.HOME }}/devel"
+      chdir: "{{ ansible_env.HOME }}/bitdust"
   when: bitdust_installed.stat.exists == False
 
 - name: Left artifact of installation
@@ -46,10 +45,10 @@
 - name: Ensure {{ ansible_env.HOME }}/.bitdust/metadata dir exists
   file: path={{ ansible_env.HOME }}/.bitdust/metadata state=directory
 
-- name: Deploy configuration file with network
-  copy:
-    content: "{{ lookup('template', 'roles/bitdust/templates/network.j2.json') }}"
-    dest: "{{ ansible_env.HOME }}/.bitdust/metadata/networks.json"
+# - name: Deploy configuration file with network
+#   copy:
+#     content: "{{ lookup('template', 'roles/bitdust/templates/network.j2.json') }}"
+#     dest: "{{ ansible_env.HOME }}/.bitdust/metadata/networks.json"
 
 - name: Change network to test one
   copy:
@@ -63,5 +62,5 @@
     dest: /usr/local/bin/bitdust
     state: link
 
-- name: Start bitdust
-  shell: bitdust detach
+- name: Start bitdust as daemon
+  shell: bitdust daemon
