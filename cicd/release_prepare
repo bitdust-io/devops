@@ -15,7 +15,7 @@ git status
 cd ..
 echo
 echo "##### compare repositories"
-diff --brief -r bitdust/ bitdust.devel/ | grep -v ".DS_Store" | grep -v "site-packages" | grep -v ".git" | grep -v "__pycache__" | grep -v ".pyc" | grep "Only in"
+diff --brief -r bitdust/ bitdust.devel/ | grep -v ".DS_Store" | grep -v "site-packages" | grep -v ".git" | grep -v "__pycache__" | grep -v ".pyc" | grep -v "regress\/logs" | grep -v "regress\/coverage" | grep "Only in"
 
 cd bitdust.devel/
 echo
