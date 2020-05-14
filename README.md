@@ -138,9 +138,9 @@ Do not forget to update your fork right away to stay in sync:
 
 ## Provisioning BitDust
 
-BitDust developers maintain few machines to "seed" the Main network - you can find those hosts in [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
+BitDust developers community maintaining few machines to "seed" the Main network - you can find those hosts in [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
-Those machines we monitor via Grafana dashboard - bellow you can read how it is provisioned
+Those machines we monitor via Grafana dashboard - bellow you can read how it was provisioned.
 
 
 
@@ -163,7 +163,7 @@ Then clone `bitdust.devops` repo and build your virtual environment:
 
 
 
-#### Install/update telegraf configuration on 
+#### Install/update telegraf configuration on target hosts
 
     ansible-playbook telegraf.yml -i inventory/main -K -e "application_name=main"
 
@@ -180,3 +180,12 @@ Then clone `bitdust.devops` repo and build your virtual environment:
     ansible-playbook bitdust_refresh.yml -i inventory/main -e "application_name=main"
 
 
+
+#### Gather information from target hosts
+
+    ansible-playbook bitdust_info.yml -i inventory/main -e "application_name=main"
+
+
+##### Execute a shell command on target hosts
+
+    ansible nodes -i ansible/inventory/main -m shell -a 'curl localhost:8180/process/health/v1'

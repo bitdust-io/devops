@@ -1,0 +1,8 @@
+- hosts: all
+  serial: 20
+  gather_facts: no
+  strategy: free
+  vars_files:
+    - roles/bitdust/vars/main.yml
+  tasks:
+    - include: roles/bitdust/tasks/info_api.yml
