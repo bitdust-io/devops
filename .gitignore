@@ -1,3 +1,4 @@
+ansible/.logs/
 ansible/*.retry
 
 # Byte-compiled / optimized / DLL files

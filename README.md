@@ -138,9 +138,43 @@ Do not forget to update your fork right away to stay in sync:
 
 ## Provisioning BitDust
 
-BitDust developers maintain few machines to "seed" the Main network - you can find those hosts in [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
+BitDust developers community maintaining few machines to "seed" the Main network - you can find those hosts in [default_network.json](https://github.com/bitdust-io/public/blob/master/default_network.json) file.
 
-Those machines we monitor via Grafana dashboard - bellow you can read how it is provisioned
+Those machines we monitor via Grafana dashboard - bellow you can read how it was provisioned.
+
+
+#### Grafana Dashboard
+
+You need to install Docker service on the monitoring host first and prepare local folder to store Grafana and InfluxDB files:
+
+    sudo apt-get update
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo apt-get update
+    sudo apt-get install docker-ce docker-ce-cli containerd.io
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    mkdir -p /home/bitdust/monitoring/influxdb
+    mkdir -p /home/bitdust/monitoring/grafana
+
+
+Then you just run the Grafana server and InfluxDB via Docker container like that:
+
+    docker run -d \
+      --name docker-influxdb-grafana \
+      -p 3003:3003 \
+      -p 3004:8888 \
+      -p 8086:8086 \
+      -v /home/bitdust/monitoring/influxdb:/var/lib/influxdb \
+      -v /home/bitdust/monitoring/grafana:/var/lib/grafana \
+      philhawthorne/docker-influxdb-grafana:latest
+
+
+This will run the process in background and make Grafana dashboard available on `http://localhost:3003`.
+
+You can use Apache2 or Nginx server to redirect the web traffic and make your monitoring dashboard avaialble via HTTPS on web port 80.
 
 
 
@@ -163,7 +197,7 @@ Then clone `bitdust.devops` repo and build your virtual environment:
 
 
 
-#### Install/update telegraf configuration on 
+#### Install/update telegraf configuration on target hosts
 
     ansible-playbook telegraf.yml -i inventory/main -K -e "application_name=main"
 
@@ -179,4 +213,15 @@ Then clone `bitdust.devops` repo and build your virtual environment:
 
     ansible-playbook bitdust_refresh.yml -i inventory/main -e "application_name=main"
 
+
+
+#### Gather information from target hosts
+
+    ansible-playbook bitdust_info.yml -i inventory/main -e "application_name=main"
+
+
+
+##### Execute a shell command on target hosts
+
+    ansible nodes -i ansible/inventory/main -m shell -a 'curl localhost:8180/process/health/v1'
 

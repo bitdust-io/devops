@@ -14,13 +14,13 @@ telegraf_tags:
 telegraf_aws_tags: false
 telegraf_aws_tags_prefix:
 
-telegraf_agent_interval: 10s
+telegraf_agent_interval: 20s
 telegraf_round_interval: "true"
 telegraf_metric_batch_size: "1000"
 telegraf_metric_buffer_limit: "10000"
 
 telegraf_collection_jitter: 0s
-telegraf_flush_interval: 10s
+telegraf_flush_interval: 20s
 telegraf_flush_jitter: 0s
 telegraf_debug: "false"
 telegraf_quiet: "false"
@@ -46,49 +46,86 @@ telegraf_influxdb_user_agent:
 telegraf_influxdb_udp_payload:
 
 telegraf_plugins_base:
+
   - name: mem
+
   - name: system
+
   - name: cpu
     options:
+      interval: 20s
       percpu: "true"
       totalcpu: "true"
       fielddrop:
         - "time_*"
+
+  - name: procstat
+    options:
+      interval: 20s
+      pattern: "bitdust.py"
+      prefix: "bitdust_py"
+
   - name: filecount
     options:
+      interval: 60s
       directories:
         - "/home/*/.bitdust/logs"
       name: "exception_*"
+
   - name: procstat
     options:
       exe: "influxd"
       prefix: "influxdb"
+
   - name: net
     options:
+      interval: 60s
       interfaces:
         - "eth0"
         - "ens*"
         - "venet0"
+
   - name: http_response
     options:
-      name_suffix: "_bitdust_process_health_v1"
+      interval: 10s
+      name_suffix: "_process_health_v1"
       urls:
         - "http://localhost:8180/process/health/v1"
       method: "GET"
+
   - name: http
     options:
-      name_suffix: "_bitdust_space_local_v1"
+      interval: 10s
+      name_suffix: "_process_info_v1"
+      urls:
+        - "http://localhost:8180/process/info/v1"
+      method: "GET"
+      data_format: "json"
+
+  - name: http
+    options:
+      interval: 60s
+      name_suffix: "_space_local_v1"
       urls:
         - "http://localhost:8180/space/local/v1"
       method: "GET"
       data_format: "json"
+
   - name: http
     options:
-      name_suffix: "_bitdust_space_donated_v1"
+      interval: 60s
+      name_suffix: "_space_donated_v1"
       urls:
         - "http://localhost:8180/space/donated/v1"
       method: "GET"
       data_format: "json"
+
+  - name: exec
+    options:
+      name_suffix: "_connections"
+      commands:
+        - "/usr/local/bin/opened_connections"
+      data_format: "value"
 
 telegraf_plugins: "{{ telegraf_plugins_base }} + {{ telegraf_plugins_extra | default([]) }}"
 

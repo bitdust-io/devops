@@ -1,0 +1,106 @@
+- name: request /process/health/v1
+  uri:
+    url: 'http://localhost:8180/process/health/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/process_health_v1.json"
+
+- name: request /config/list/v1
+  uri:
+    url: 'http://localhost:8180/config/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/config_list_v1.json"
+
+- name: request /automat/list/v1
+  uri:
+    url: 'http://localhost:8180/automat/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/automat_list_v1.json"
+
+- name: request /dht/db/dump/v1
+  uri:
+    url: 'http://localhost:8180/dht/db/dump/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/dht_db_dump_v1.json"
+
+- name: request /queue/list/v1
+  uri:
+    url: 'http://localhost:8180/queue/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/queue_list_v1.json"
+
+- name: request /key/list/v1
+  uri:
+    url: 'http://localhost:8180/key/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/key_list_v1.json"
+
+- name: request /customer/list/v1
+  uri:
+    url: 'http://localhost:8180/customer/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/customer_list_v1.json"
+
+- name: request /service/list/v1
+  uri:
+    url: 'http://localhost:8180/service/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/service_list_v1.json"
+
+- name: request /space/donated/v1
+  uri:
+    url: 'http://localhost:8180/space/donated/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/space_donated_v1.json"
+
+- name: prepare destination folder
+  file:
+    path: ".logs/{{ inventory_hostname }}/"
+    state: directory
+
+- name: fetch results
+  synchronize:  src="/tmp/{{ item }}" dest=".logs/{{ inventory_hostname }}/" mode=pull
+  with_items:
+    - "process_health_v1.json"
+    - "config_list_v1.json"
+    - "automat_list_v1.json"
+    - "service_list_v1.json"
+    - "queue_list_v1.json"
+    - "key_list_v1.json"
+    - "customer_list_v1.json"
+    - "space_donated_v1.json"
