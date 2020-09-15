@@ -21,7 +21,7 @@ cd bitdust.devel/
 echo
 echo "##### building history"
 ./history ../bitdust/
-head -25 HISTORY.TXT
+head -25 HISTORY.txt
 
 echo
 echo "##### now you need to prepare changes in the 'public' BitDust repository:"
