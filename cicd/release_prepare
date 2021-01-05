@@ -5,7 +5,7 @@ cd ../bitdust
 echo
 echo "##### promote changes from one repository to another"
 ./import ../bitdust.devel/
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin" ]]; then
     find . -type f -name "*.py" -exec sed -i '' -e 's/_Debug = True/_Debug = False/g' {} +
 else
     find . -type f -name "*.py" -exec sed -i -e 's/_Debug = True/_Debug = False/g' {} +
