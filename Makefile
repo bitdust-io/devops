@@ -11,5 +11,11 @@ main-net-restart:
 main-net-config-update:
 	ansible-playbook ansible/telegraf.yml -i ansible/inventory/main -K -e "application_name=main"
 
-pypi-build: venv
-	@./pypi_build.sh
+build-pypi: venv
+	@./pypi/pypi_build.sh
+
+release-prepare:
+	@./cicd/release_prepare
+
+release-start:
+	@./cicd/release_start
