@@ -24,4 +24,6 @@ echo
 echo "##### now start a Pull Request, go to https://github.com/bitdust-io/public/pulls"
 echo
 
+python3 -c "import webbrowser; webbrowser.open('https://github.com/bitdust-io/public/compare')"
+
 exit 0
