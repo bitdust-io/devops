@@ -123,9 +123,9 @@ telegraf_plugins_base:
   - name: http
     options:
       interval: 20s
-      name_suffix: "_space_donated_v1"
+      name_suffix: "_event_list_v1"
       urls:
-        - "http://localhost:8180/events/list/v1"
+        - "http://localhost:8180/event/list/v1"
       method: "GET"
       data_format: "json"
 
