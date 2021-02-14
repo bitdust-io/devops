@@ -1,5 +1,5 @@
 - hosts: all
-  serial: 2
+  serial: 1
   vars_files:
     - roles/bitdust/vars/main.yml
   tasks:
