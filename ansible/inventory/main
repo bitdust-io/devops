@@ -10,7 +10,7 @@ bahamas.ai                  ansible_user=bitdust   application_name=monitoring
 
 [id_servers]
 bahamas.ai                  ansible_user=bitdust   application_name=main
-bitdust.ai                  ansible_user=bitdust   application_name=main
+# bitdust.ai                  ansible_user=bitdust   application_name=main
 p2p-alice.ai                ansible_user=bitdust   application_name=main
 seed.bitdust.io             ansible_user=veselin   application_name=main
 root-node.ai                ansible_user=bitdust   application_name=main
@@ -21,7 +21,7 @@ webapp.ai                   ansible_user=bitdust   application_name=main
 
 [suppliers]
 bahamas.ai                  ansible_user=bitdust   application_name=main
-bitdust.ai                  ansible_user=bitdust   application_name=main
+# bitdust.ai                  ansible_user=bitdust   application_name=main
 p2p-alice.ai                ansible_user=bitdust   application_name=main
 seed.bitdust.io             ansible_user=veselin   application_name=main
 root-node.ai                ansible_user=bitdust   application_name=main

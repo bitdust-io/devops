@@ -104,7 +104,7 @@ telegraf_plugins_base:
 
   - name: http
     options:
-      interval: 300s
+      interval: 30s
       name_suffix: "_space_local_v1"
       urls:
         - "http://localhost:8180/space/local/v1"
@@ -113,7 +113,7 @@ telegraf_plugins_base:
 
   - name: http
     options:
-      interval: 300s
+      interval: 30s
       name_suffix: "_space_donated_v1"
       urls:
         - "http://localhost:8180/space/donated/v1"
