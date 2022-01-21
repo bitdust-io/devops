@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1624609600985,
+  "iteration": 1638649006203,
   "links": [],
   "panels": [
     {
@@ -341,7 +341,7 @@
           "groupBy": [
             {
               "params": [
-                "$group"
+                "120s"
               ],
               "type": "time"
             },
@@ -641,6 +641,7 @@
             }
           ],
           "measurement": "net",
+          "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
           "resultFormat": "time_series",
@@ -905,7 +906,7 @@
           "groupBy": [
             {
               "params": [
-                "20s"
+                "60s"
               ],
               "type": "time"
             },
@@ -923,6 +924,7 @@
             }
           ],
           "measurement": "procstat",
+          "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
           "resultFormat": "time_series",
@@ -1201,6 +1203,7 @@
             }
           ],
           "measurement": "http_process_info_v1",
+          "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
           "resultFormat": "time_series",
@@ -1320,7 +1323,7 @@
           "groupBy": [
             {
               "params": [
-                "10s"
+                "30s"
               ],
               "type": "time"
             },
@@ -1459,7 +1462,7 @@
           "groupBy": [
             {
               "params": [
-                "10s"
+                "30s"
               ],
               "type": "time"
             },
@@ -1598,7 +1601,7 @@
           "groupBy": [
             {
               "params": [
-                "10s"
+                "30s"
               ],
               "type": "time"
             },
@@ -1737,7 +1740,7 @@
           "groupBy": [
             {
               "params": [
-                "10s"
+                "30s"
               ],
               "type": "time"
             },
@@ -1876,7 +1879,7 @@
           "groupBy": [
             {
               "params": [
-                "$group"
+                "30s"
               ],
               "type": "time"
             },
@@ -4583,8 +4586,9 @@
             }
           ],
           "measurement": "http_space_local_v1",
+          "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT (100 - ( last(\"result_diskfree\") / last(\"result_disktotal\") ) * 100 ) FROM \"http_space_local_v1\" WHERE $timeFilter GROUP BY time(1m), \"host\" fill(none)",
+          "query": "SELECT (100 - ( last(\"result_diskfree\") / last(\"result_disktotal\") ) * 100 ) FROM \"http_space_local_v1\" WHERE $timeFilter GROUP BY time(20m), \"host\" fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -4713,7 +4717,7 @@
           "groupBy": [
             {
               "params": [
-                "30s"
+                "300s"
               ],
               "type": "time"
             },
@@ -4956,7 +4960,7 @@
       },
       "hiddenSeries": false,
       "id": 43,
-      "interval": "60s",
+      "interval": "120s",
       "legend": {
         "alignAsTable": false,
         "avg": false,
@@ -5013,7 +5017,7 @@
           "measurement": "http_event_list_v1",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT non_negative_derivative(mean(\"result_node-connected\"), 20s) FROM \"http_event_list_v1\" WHERE $timeFilter GROUP BY time(20s), \"host\" fill(null)",
+          "query": "SELECT non_negative_derivative(mean(\"result_node-connected\"), 60s) FROM \"http_event_list_v1\" WHERE $timeFilter GROUP BY time(60s), \"host\" fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -5051,7 +5055,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT non_negative_derivative(mean(\"result_node-disconnected\"), 20s) FROM \"http_event_list_v1\" WHERE $timeFilter GROUP BY time(20s), \"host\" fill(null)",
+          "query": "SELECT non_negative_derivative(mean(\"result_node-disconnected\"), 60s) FROM \"http_event_list_v1\" WHERE $timeFilter GROUP BY time(60s), \"host\" fill(null)",
           "rawQuery": true,
           "refId": "B",
           "resultFormat": "time_series",
@@ -5536,5 +5540,5 @@
   "variables": {
     "list": []
   },
-  "version": 22
+  "version": 25
 }

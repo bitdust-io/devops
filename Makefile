@@ -19,3 +19,6 @@ release-prepare:
 
 release-start:
 	@./cicd/release_start
+
+release-publish:
+	@sh -c "cd release/; ./VERSION-UP.sh; cd sources/; ./build; ./dist; ./publish;"

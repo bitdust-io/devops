@@ -29,5 +29,6 @@ echo "1. cd ../bitdust/"
 echo "2. use 'git add / git rm' to confirm changes"
 echo "3. modify ../bitdust.devel/CHANGELOG.txt file (copy & paste console output above)"
 echo "4. cd ../bitdust.devops/"
-echo "5. run ./cicd/release_start"
-echo
+echo "5. make release-start"
+echo "6. start pull request to the master branch in the \"public\" repository and get it merged"
+echo "7. make release-publish"

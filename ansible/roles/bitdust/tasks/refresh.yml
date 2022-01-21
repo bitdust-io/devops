@@ -17,4 +17,12 @@
 - name: Start bitdust as daemon
   shell: bitdust daemon
   register: out
+- pause:
+    prompt: "Waiting for 10 seconds"
+    seconds: 15
+- debug: var=out.stdout_lines
+
+- name: Run "bitdust api network_connected"
+  shell: bitdust api network_connected
+  register: out
 - debug: var=out.stdout_lines
