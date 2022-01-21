@@ -1,0 +1,9 @@
+#!/bin/sh
+
+echo '[ building python source package with setuptools "sdist" tool ]'
+cd workspace
+rm -rf dist
+python3 setup.py sdist >sdist.log
+ls dist
+
+echo "[ distribution file prepared ]"

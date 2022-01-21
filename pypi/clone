@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "[ downloading source files ]"
+rm -rf ./bitdust.public
+git clone https://github.com/bitdust-io/public.git bitdust.public
