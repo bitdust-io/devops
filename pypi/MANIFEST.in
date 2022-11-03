@@ -1,7 +1,7 @@
-recursive-include bitdust/dht/entangled *
-recursive-include bitdust/parallelp/pp *
+recursive-include bitdust_forks/entangled *
+recursive-include bitdust_forks/parallelp/pp *
 
-include bitdust/parallelp/README
+include bitdust_forks/parallelp/README
 include LICENSE.txt
 include README.txt
 include CHANGELOG.txt

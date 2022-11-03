@@ -21,4 +21,4 @@ release-start:
 	@./cicd/release_start
 
 release-publish:
-	@sh -c "cd pypi/; ./clone; ./bump; ./build; ./dist; ./publish;"
+	@sh -c "cd pypi/; ./clone; ./bump; ./build; ./dist; # ./publish;"

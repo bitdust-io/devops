@@ -3,8 +3,21 @@
 
 cd ../bitdust
 echo
-echo "##### promote changes from one repository to another"
-./import ../bitdust.devel/
+echo "##### WARNING! You are going to copy all code changes from DEVELOPMENT repository into PUBLIC and overwrite all existing files in `pwd`"
+read -p "##### ready? Press CTRL+C to cancel operation"
+
+./import ../bitdust.devel/ >/dev/null
+rm -rf release/
+rm -rf screenshots/
+rm -rf scripts/
+rm -rf deploy/
+rm -rf dht/entangled_orig/
+rm -rf devops/
+rm -rf tests/dht/
+rm -rf tests/e2e/
+rm -rf tests/experiments/
+make pyclean
+
 if [[ "$OSTYPE" == "darwin" ]]; then
     find . -type f -name "*.py" -exec sed -i '' -e 's/_Debug = True/_Debug = False/g' {} +
 else
