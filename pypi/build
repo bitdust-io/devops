@@ -55,4 +55,8 @@ rm -rf web/html/*
 rm -rf bitdust.py
 rm -rf bpworker.py
 
+echo "[ patching bitdust/main/default_network.py file ]"
+echo -n "def default_network_info(): return " > bitdust/main/default_network.py
+cat default_network.json >> bitdust/main/default_network.py
+
 echo "[ workspace files prepared ]"

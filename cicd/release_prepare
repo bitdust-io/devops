@@ -6,7 +6,7 @@ echo
 echo "##### WARNING! You are going to copy all code changes from DEVELOPMENT repository into PUBLIC and overwrite all existing files in `pwd`"
 read -p "##### ready? Press CTRL+C to cancel operation"
 
-./import ../bitdust.devel/ >/dev/null
+./import ../bitdust.devel/
 rm -rf release/
 rm -rf screenshots/
 rm -rf scripts/
@@ -31,6 +31,7 @@ echo "##### compare repositories"
 diff --brief -r bitdust/ bitdust.devel/ | grep -v ".DS_Store" | grep -v "site-packages" | grep -v ".git" | grep -v "__pycache__" | grep -v ".pyc" | grep -v "regress\/logs" | grep -v "regress\/coverage" | grep "Only in"
 
 cd bitdust.devel/
+rm -rf .tmp/
 echo
 echo "##### building history"
 ./history ../bitdust/
