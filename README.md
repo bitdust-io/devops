@@ -1,7 +1,7 @@
 # BitDust DevOps
 
-Collection of tools, scripts and helpers for maintaining BitDust infrastracture and software development.
-Also here you will learn how to start your own private BitDust network from scratch.
+Collection of tools, scripts, and helpers for maintaining BitDust infrastructure and software development.
+Also, you will learn how to start your own private BitDust network from scratch here.
 
 
 
@@ -13,24 +13,23 @@ BitDust project development flow is based on two independent GIT repositories:
 * [Stable repository](https://github.com/bitdust-io/public)
 
 
-When changes in the development repo are considered to be "good enough" files are manually copied by one of the developers to the stable repo fork on his local machine and new commit must be created to start a new Pull Request.
+When changes in the development repo are considered "good enough," files are manually copied by one of the developers to the stable repo fork on his local machine, and a new commit must be created to start a new Pull Request.
 
-This process can be considered as a new "Release" - BitDust software do not have any versioning of the releases because it is not required. After Pull Request is merged - release is done.
+This process can be considered a new "Release" - BitDust software does not have any versioning of the releases because it is not required. After Pull Request is merged - the release is done.
 
-Every BitDust node periodically "check & fetch" fresh commits from the GIT repository where it was cloned from.
-This way BitDust software on your local machine automatically "updates itself" and stays in sync with the "Stable" repository. Every BitDust contributor is responsible to deliver high-standard, super reliable and well-tested source code changes every time Pull Request is merged.
+Every BitDust node periodically "checks & fetches" fresh commits from the GIT repository where it was cloned from. This way BitDust software on your local machine automatically "updates itself" and stays in sync with the "Stable" repository. Every BitDust contributor is responsible for delivering high-standard, super reliable, and well-tested source code changes every time Pull Request is merged.
 
-As a user of BitDust software you can disabled automatic updates at any moment in the program settings and always run only the code you cloned first time when you get into BitDust network.
+As a user of BitDust software, you can disable automatic updates at any moment in the program settings and always run only the code you cloned the first time when you get into BitDust's network.
 
-You can also fork BitDust "stable" repo and clone locally your fork to quickly check and run main Python code. Just like any other github project you forked, your fork will be fully independent from the main repo - you will have to sync manually with main repo if you wish to stay on same version. This will work the best for all of the developers and also for those who wish to learn BitDust or particiapte in testing. Remember to always check and stay in sync with main network and refresh your code from [Stable repository](https://github.com/bitdust-io/public).
+You can also fork BitDust's "stable" repo and clone locally your fork to quickly check and run the main Python code. Like any other GitHub project you forked, your fork will be fully independent of the main repo - you will have to sync manually with the main repo if you wish to stay on the same version. This will work best for all developers and those who wish to learn BitDust or participate in testing. Remember to always check and stay in sync with the main network and refresh your code from [Stable repository](https://github.com/bitdust-io/public).
 
-If you stay out of sync with other users your data is at risk! Remember to always check & pull your BitDust software sources and stay in sync with the main network by updating your code from [Stable repository](https://github.com/bitdust-io/public).
+If you stay out of sync with other users, your data is at risk! Remember always to check & pull your BitDust software sources and stay in sync with the main network by updating your code from [Stable repository](https://github.com/bitdust-io/public).
 
-For non-developers and all other people willing to join BitDust network in a common way we maintain [BitDust Desktop](https://github.com/bitdust-io/desktop/releases) Application installer.
+For non-developers and all other people willing to join the BitDust network in a common way we maintain [BitDust Desktop](https://github.com/bitdust-io/desktop/releases) Application installer.
 
-You go directly to [bitdust.io web site](https://bitdust.io) and download installer file - we provide link directly from [GitHub repo]([BitDust desktop](https://github.com/bitdust-io/desktop/). Application uses Electron Framework for GUI and will automatically clone from BitDust Stable repo for the first time you run application and keep your local sources in sync with the master branch.
+Go directly to [bitdust.io web site](https://bitdust.io) and download installer file - we provide link directly from [GitHub repo]([BitDust desktop](https://github.com/bitdust-io/desktop/). The Application uses Electron Framework for GUI and will automatically clone from BitDust Stable repo for the first time you run application and keep your local sources in sync with the master branch.
 
-As a user of BitDust software you can disabled automatic updates at any moment in the program settings and always run only the code you cloned first time when you get into BitDust network.
+As a BitDust software user, you can disable automatic updates at any moment in the program settings and always run only the code you cloned the first time when you get into the BitDust network.
 
 Below is a step-by-step guide for developers to deliver changes from the "Development" repository into the "Stable" repository.
 
@@ -38,8 +37,8 @@ Below is a step-by-step guide for developers to deliver changes from the "Develo
 
 ## Prepare environment
 
-To be able to run a new BitDust release you must fork and clone both repositories already.
-Basically those actions you need to do only one time and just keep your repositories up-to-date with the main branches.
+To run a new BitDust release, you must already fork and clone both repositories.
+Basically, you need to do those actions only once and keep your repositories up-to-date with the main branches.
 
 Here we assume your fork will be "origin" and main repository will be added as "upstream":
 
@@ -62,9 +61,9 @@ Here we assume your fork will be "origin" and main repository will be added as "
 
 ## Runbook
 
-To start a release you need to prepare source code changes inside your forked & cloned "Stable" repo.
+To start a release, you need to prepare source code changes inside your forked & cloned "Stable" repo.
 You do not do any changes to the source code manually but use two helper scripts built for you.
-Those scripts will take source code from "Development" repo you already cloned locally and prepare everything for you to start Pull Request in the "Stable" repo and publish latest source code.
+Those scripts will take source code from the "Development" repo you already cloned locally, prepare everything for you to start Pull Request in the "Stable" repo, and publish the latest source code.
 
 To start you open a terminal window, change to `bitdust.devops` repository and run First script:
 
@@ -73,8 +72,8 @@ To start you open a terminal window, change to `bitdust.devops` repository and r
     ./ci/release_prepare
 
 
-This will prepare all files to be commited into "Stable" repository.
-All modified/added/removed files will be displayed in your terminal output. That script is doing a bunch of things:
+This will prepare all files to be committed into the "Stable" repository.
+Your terminal output will display all modified/added/removed files. That script is doing a bunch of things:
 
 * copy files from "devel" to "stable" repo
 * disable DEBUG mode in all Python files
@@ -82,7 +81,7 @@ All modified/added/removed files will be displayed in your terminal output. That
 * updates `HISTORY.txt` file in "devel" repo
 
 
-Now you must manually edit and prepare `CHANGELOG.txt` file inside your BitDust development repo. All you need to do is to provide a short info about your changes with a date and your name.
+You must manually edit and prepare the `CHANGELOG.txt` file inside your BitDust development repo. You must provide short info about your changes with a date and name.
 
 After running `release_prepare` you should see in your terminal console output a list of most recent commits.
 You can simply Copy & Past those lines from your console to the top of `CHANGELOG.txt` file.
