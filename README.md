@@ -40,7 +40,7 @@ Below is a step-by-step guide for developers to deliver changes from the "Develo
 To run a new BitDust release, you must already fork and clone both repositories.
 Basically, you need to do those actions only once and keep your repositories up-to-date with the main branches.
 
-Here we assume your fork will be "origin" and main repository will be added as "upstream":
+Here we assume your fork will be "origin" and the main repository will be added as "upstream":
 
     # fork and clone development repo
     git clone git@github.com:<your GitHub username here>/devel.git bitdust.devel
@@ -61,11 +61,11 @@ Here we assume your fork will be "origin" and main repository will be added as "
 
 ## Runbook
 
-To start a release, you need to prepare source code changes inside your forked & cloned "Stable" repo.
+To start a release, you must prepare source code changes inside your forked & cloned "Stable" repo.
 You do not do any changes to the source code manually but use two helper scripts built for you.
 Those scripts will take source code from the "Development" repo you already cloned locally, prepare everything for you to start Pull Request in the "Stable" repo, and publish the latest source code.
 
-To start you open a terminal window, change to `bitdust.devops` repository and run First script:
+To start, you open a terminal window, change to the `bitdust.devops` repository, and run the First script:
 
     git clone https://github.com/bitdust-io/devops.git bitdust.devops
     cd bitdust.devops/
@@ -83,9 +83,9 @@ Your terminal output will display all modified/added/removed files. That script 
 
 You must manually edit and prepare the `CHANGELOG.txt` file inside your BitDust development repo. You must provide short info about your changes with a date and name.
 
-After running `release_prepare` you should see in your terminal console output a list of most recent commits.
-You can simply Copy & Past those lines from your console to the top of `CHANGELOG.txt` file.
-Look at `HISTORY.TXT` file in the root of development repo and use commit messages to build info in `CHANGELOG.txt` file.
+After running `release_prepare`, you should see a list of the most recent commits in your terminal console output.
+You can copy & paste those lines from your console to the top of `CHANGELOG.txt` file.
+Look at the `HISTORY.TXT` file in the root of the development repo and use commit messages to build info in the `CHANGELOG.txt` file.
 
     head -20 ../bitdust.devel/HISTORY.txt
     nano ../bitdust.devel/CHANGELOG.txt
