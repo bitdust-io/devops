@@ -91,10 +91,9 @@ Look at the `HISTORY.TXT` file in the root of the development repo and use commi
     nano ../bitdust.devel/CHANGELOG.txt
 
 
-Now you need to open another terminal window, go to the "Stable" repository and use Git command `git add ...` / `git rm ...` to confirm and prepare changes to be released.
+Now you need to open another terminal window, go to the "Stable" repository, and use `git add ...` / `git rm ...` to confirm and prepare changes to be released.
 
-First mark all modified files in git repo to be commited in the new release:
-
+First, mark all modified files in the git repo to be committed in the new release:
     cd ./bitdust
     git add -u .
 
