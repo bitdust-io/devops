@@ -16,6 +16,6 @@ telegraf_binary_path: /usr/bin/telegraf
 telegraf_configuration_dir: /etc/telegraf
 
 telegraf_influxdb_urls:
-  - http://85.255.4.194:8086
+  - http://89.40.125.159:8086
 
 apt_broken: no

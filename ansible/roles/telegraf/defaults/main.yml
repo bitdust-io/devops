@@ -14,13 +14,13 @@ telegraf_tags:
 telegraf_aws_tags: false
 telegraf_aws_tags_prefix:
 
-telegraf_agent_interval: 20s
+telegraf_agent_interval: 10s
 telegraf_round_interval: "true"
 telegraf_metric_batch_size: "1000"
 telegraf_metric_buffer_limit: "10000"
 
 telegraf_collection_jitter: 0s
-telegraf_flush_interval: 20s
+telegraf_flush_interval: 30s
 telegraf_flush_jitter: 0s
 telegraf_debug: "false"
 telegraf_quiet: "false"
@@ -39,7 +39,7 @@ telegraf_influxdb_ssl_cert:
 telegraf_influxdb_ssl_key:
 telegraf_influxdb_insecure_skip_verify:
 
-telegraf_influxdb_timeout: 5s
+telegraf_influxdb_timeout: 10s
 telegraf_influxdb_username:
 telegraf_influxdb_password:
 telegraf_influxdb_user_agent:
@@ -53,7 +53,7 @@ telegraf_plugins_base:
 
   - name: cpu
     options:
-      interval: 20s
+      interval: 60s
       percpu: "true"
       totalcpu: "true"
       fielddrop:
@@ -61,13 +61,13 @@ telegraf_plugins_base:
 
   - name: procstat
     options:
-      interval: 20s
+      interval: 60s
       pattern: "bitdust.py"
       prefix: "bitdust_py"
 
   - name: filecount
     options:
-      interval: 60s
+      interval: 300s
       directories:
         - "/home/*/.bitdust/logs"
       name: "exception_*"
@@ -95,7 +95,7 @@ telegraf_plugins_base:
 
   - name: http
     options:
-      interval: 10s
+      interval: 60s
       name_suffix: "_process_info_v1"
       urls:
         - "http://localhost:8180/process/info/v1"
@@ -104,7 +104,7 @@ telegraf_plugins_base:
 
   - name: http
     options:
-      interval: 60s
+      interval: 1200s
       name_suffix: "_space_local_v1"
       urls:
         - "http://localhost:8180/space/local/v1"
@@ -113,10 +113,19 @@ telegraf_plugins_base:
 
   - name: http
     options:
-      interval: 60s
+      interval: 300s
       name_suffix: "_space_donated_v1"
       urls:
         - "http://localhost:8180/space/donated/v1"
+      method: "GET"
+      data_format: "json"
+
+  - name: http
+    options:
+      interval: 60s
+      name_suffix: "_event_list_v1"
+      urls:
+        - "http://localhost:8180/event/list/v1"
       method: "GET"
       data_format: "json"
 

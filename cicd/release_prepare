@@ -3,9 +3,22 @@
 
 cd ../bitdust
 echo
-echo "##### promote changes from one repository to another"
+echo "##### WARNING! You are going to copy all code changes from DEVELOPMENT repository into PUBLIC and overwrite all existing files in `pwd`"
+read -p "##### ready? Press CTRL+C to cancel operation"
+
 ./import ../bitdust.devel/
-if [[ "$OSTYPE" == "darwin"* ]]; then
+rm -rf release/
+rm -rf screenshots/
+rm -rf scripts/
+rm -rf deploy/
+rm -rf dht/entangled_orig/
+rm -rf devops/
+rm -rf tests/dht/
+rm -rf tests/e2e/
+rm -rf tests/experiments/
+make pyclean
+
+if [[ "$OSTYPE" == "darwin" ]]; then
     find . -type f -name "*.py" -exec sed -i '' -e 's/_Debug = True/_Debug = False/g' {} +
 else
     find . -type f -name "*.py" -exec sed -i -e 's/_Debug = True/_Debug = False/g' {} +
@@ -18,10 +31,11 @@ echo "##### compare repositories"
 diff --brief -r bitdust/ bitdust.devel/ | grep -v ".DS_Store" | grep -v "site-packages" | grep -v ".git" | grep -v "__pycache__" | grep -v ".pyc" | grep -v "regress\/logs" | grep -v "regress\/coverage" | grep "Only in"
 
 cd bitdust.devel/
+rm -rf .tmp/
 echo
 echo "##### building history"
 ./history ../bitdust/
-head -25 HISTORY.TXT
+head -25 HISTORY.txt
 
 echo
 echo "##### now you need to prepare changes in the 'public' BitDust repository:"
@@ -29,5 +43,6 @@ echo "1. cd ../bitdust/"
 echo "2. use 'git add / git rm' to confirm changes"
 echo "3. modify ../bitdust.devel/CHANGELOG.txt file (copy & paste console output above)"
 echo "4. cd ../bitdust.devops/"
-echo "5. run ./cicd/release_start"
-echo
+echo "5. make release-start"
+echo "6. start pull request to the master branch in the \"public\" repository and get it merged"
+echo "7. make release-publish"

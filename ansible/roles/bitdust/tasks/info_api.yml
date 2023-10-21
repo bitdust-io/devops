@@ -88,6 +88,16 @@
     status_code: 200
     dest: "/tmp/space_donated_v1.json"
 
+- name: request /event/list/v1
+  uri:
+    url: 'http://localhost:8180/event/list/v1'
+    method: GET
+    force_basic_auth: no
+    headers:
+      "Content-type": "Application/json"
+    status_code: 200
+    dest: "/tmp/event_list_v1.json"
+
 - name: prepare destination folder
   file:
     path: ".logs/{{ inventory_hostname }}/"

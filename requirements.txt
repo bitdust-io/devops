@@ -1,1 +1,5 @@
 ansible
+setuptools
+wheel
+pkgversion
+twine

@@ -1,0 +1,62 @@
+#!/bin/sh
+
+echo "[ prepare workspace folder ]"
+rm -rf workspace
+mkdir workspace
+mkdir workspace/scripts
+cp MANIFEST.in workspace
+
+echo "[ export files from git repo into workspace ]"
+cd ./bitdust.public
+git archive master | (cd ../workspace/.; tar x)
+cd ..
+
+echo "[ prepare setup.py file ]"
+cp setup.py workspace
+version=`cat version`
+regexp="s/{version}/$version/g;"
+perl -i -pe $regexp workspace/setup.py
+
+echo "[ prepare executable scripts ]"
+cp ./bitdust workspace/scripts/
+cp ./bitdust_worker workspace/scripts/
+chmod +x workspace/scripts/bitdust
+chmod +x workspace/scripts/bitdust_worker
+
+echo "[ filtering out unrelated files ]"
+cd workspace
+rm -rf .dockerignore
+rm -rf .editorconfig
+rm -rf .gitignore
+rm -rf .circleci
+rm -rf Dockerfile
+rm -rf history
+rm -rf Makefile
+rm -rf networks.json
+rm -rf .travis.yml
+rm -rf MANIFEST.in
+rm -rf setup_gen.py
+rm -rf setup.cfg
+rm -rf commit.sh
+rm -rf devops/
+rm -rf regress/
+rm -rf tests/dht/
+rm -rf tests/experiments/
+rm -rf screenshots/*
+rm -rf screenshots
+rm -rf release/*
+rm -rf release
+rm -rf icons/*
+rm -rf icons
+rm -rf fonts/*
+rm -rf fonts
+rm -rf web/static/*
+rm -rf web/html/*
+rm -rf bitdust.py
+rm -rf bpworker.py
+
+echo "[ patching bitdust/main/default_network.py file ]"
+echo -n "def default_network_info(): return " > bitdust/main/default_network.py
+cat default_network.json >> bitdust/main/default_network.py
+
+echo "[ workspace files prepared ]"

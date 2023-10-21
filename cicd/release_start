@@ -21,7 +21,15 @@ git push origin master
 
 
 echo
-echo "##### now start a Pull Request, go to https://github.com/bitdust-io/public/pulls"
+echo "##### start a Pull Request, go to https://github.com/bitdust-io/public/pulls"
 echo
+
+python3 -c "import webbrowser; webbrowser.open('https://github.com/bitdust-io/public/compare')"
+
+
+echo
+echo "##### after Pull Request is merged, run: make release-publish"
+echo
+
 
 exit 0

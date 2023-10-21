@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "[ publishing sources on PyPi ]"
+cd workspace
+../../venv/bin/python3 -m twine upload dist/*
