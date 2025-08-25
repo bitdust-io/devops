@@ -87,7 +87,7 @@ setup(
         ],
     },
     install_requires=[
-        'Twisted==20.3.0',
+        'Twisted==23.8.0',
         'zope.interface',
         'cryptography',
         'pycryptodomex',
